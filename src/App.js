@@ -1,10 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Component } from "react";
+import Searchbar from "./Components/Searchbar/Searchbar";
+import ImageGallery from "./Components/ImageGallery/ImageGallery";
 
-function App() {
-  return (
-    
-  );
+export default class App extends Component {
+  handleForSubmit = (text) => {
+    console.log(text);
+  };
+  render() {
+    return (
+      <>
+        <Searchbar onSubmit={this.handleForSubmit}></Searchbar>
+        <ImageGallery></ImageGallery>
+      </>
+    );
+  }
 }
-
-export default App;
