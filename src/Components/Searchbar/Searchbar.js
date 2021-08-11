@@ -1,32 +1,52 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import s from './Searchbar.module.css';
 export default class Searchbar extends Component {
   state = {
-    text: "",
+    text: '',
   };
-  handleTextChange = (e) => {
-    this.setState({ text: e.currentTarget.value.toLowerCase() });
+  handleTextChange = e => {
+    this.setState({
+      text: e.currentTarget.value.toLowerCase(),
+    });
   };
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
-    if (this.state.text.trim() === "") {
-      alert("NAME MTHF");
+    if (this.state.text.trim() === '') {
+      alert('NAME MTHF');
       return;
     }
     this.props.onSubmit(this.state.text);
-    this.setState({ text: "" });
+    this.setState({ text: '' });
   };
   render() {
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="picName"
-            value={this.state.text}
-            onChange={this.handleTextChange}
-          ></input>
-          <button type="submit">Search</button>
-        </form>
+        <header className={s.Searchbar}>
+          <form
+            className={s.SearchForm}
+            onSubmit={this.handleSubmit}
+          >
+            <button
+              type="submit"
+              className={s.SearchForm_button}
+            >
+              <span className={s.SearchForm_button_label}>
+                Search
+              </span>
+            </button>
+
+            <input
+              className={s.SearchForm_input}
+              type="text"
+              autocomplete="off"
+              autofocus
+              placeholder="Search images and photos"
+              name="picName"
+              value={this.state.text}
+              onChange={this.handleTextChange}
+            />
+          </form>
+        </header>
       </>
     );
   }

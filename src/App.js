@@ -15,17 +15,9 @@ export default class App extends Component {
     return (
       <>
         <Searchbar
-          onSubmit={
-            this
-              .handleForSubmit
-          }
+          onSubmit={this.handleForSubmit}
         ></Searchbar>
-        {/* <ImageGallery></ImageGallery> */}
-        <ImageGalleryItem
-          text={
-            this.state.text
-          }
-        ></ImageGalleryItem>
+        <ImageGallery text={this.state.text}></ImageGallery>
       </>
     );
   }
