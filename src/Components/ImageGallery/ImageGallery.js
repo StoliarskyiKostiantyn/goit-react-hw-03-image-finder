@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
+import s from './ImageGallery.module.css';
 export default class ImageGallery extends Component {
   state = { text: [] };
   componentDidUpdate(prevProps, prevState) {
@@ -15,16 +16,23 @@ export default class ImageGallery extends Component {
     }
   }
   render() {
-    return this.state.text.map(item => {
-      const { id, webformatURL, largeImageURL } = item;
+    return (
+      <>
+        <ul className={s.ImageGallery}>
+          {this.state.text.map(item => {
+            const { id, webformatURL, largeImageURL } =
+              item;
 
-      return (
-        <ImageGalleryItem
-          id={id}
-          webformatURL={webformatURL}
-          largeImageURL={largeImageURL}
-        ></ImageGalleryItem>
-      );
-    });
+            return (
+              <ImageGalleryItem
+                id={id}
+                webformatURL={webformatURL}
+                largeImageURL={largeImageURL}
+              ></ImageGalleryItem>
+            );
+          })}
+        </ul>
+      </>
+    );
   }
 }

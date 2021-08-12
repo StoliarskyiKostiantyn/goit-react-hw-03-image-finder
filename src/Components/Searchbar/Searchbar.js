@@ -30,9 +30,9 @@ export default class Searchbar extends Component {
               type="submit"
               className={s.SearchForm_button}
             >
-              <span className={s.SearchForm_button_label}>
-                Search
-              </span>
+              <span
+                className={s.SearchForm_button_label}
+              ></span>
             </button>
 
             <input
