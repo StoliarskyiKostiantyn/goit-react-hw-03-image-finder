@@ -1,17 +1,36 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { createPortal } from 'react-dom';
 import s from './Modal.module.css';
+const modalPortal = document.querySelector('#modal-root');
 export default class Modal extends Component {
+  ref = React.createRef();
   componentDidMount() {
-    console.log('Modal componentDidMount');
+    this.ref.current.addEventListener(
+      'click',
+      this.props.closeModal,
+    );
+    window.addEventListener(
+      'keydown',
+      this.props.closeModal,
+    );
   }
   componentWillUnmount() {
-    console.log('Modal componentWillUnmount');
+    this.ref.current.removeEventListener(
+      'click',
+      this.props.closeModal,
+    );
+    window.removeEventListener(
+      'keydown',
+      this.props.closeModal,
+    );
   }
   render() {
-    return (
-      <div className={s.Overlay}>
-        <div className={s.Modal}>{this.props.children}</div>
-      </div>
+    return createPortal(
+      <div ref={this.ref}>
+        <img src={this.props.url} alt="" />
+      </div>,
+      modalPortal,
     );
   }
 }
