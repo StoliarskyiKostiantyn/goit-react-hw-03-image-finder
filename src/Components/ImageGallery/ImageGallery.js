@@ -22,7 +22,7 @@ export default class ImageGallery extends Component {
     }));
   };
   openModal = evt => {
-    if (evt.target.nodeName === 'img') {
+    if (evt.target.nodeName === 'IMG') {
       this.setState({
         modalIsOpen: true,
         modalUrl: evt.target.dataset.big_image,
@@ -32,7 +32,7 @@ export default class ImageGallery extends Component {
 
   closeModal = evt => {
     if (
-      evt.target.nodeName === 'div' ||
+      evt.target.nodeName === 'DIV' ||
       evt.code === 'Escape'
     ) {
       this.setState({
@@ -42,16 +42,16 @@ export default class ImageGallery extends Component {
   };
   render() {
     const { modalIsOpen, modalUrl, page } = this.state;
-    const { text, hideLoader } = this.props;
+    const { search, hideLoader } = this.props;
 
     return (
       <>
         <div>
-          <ul>
+          <ul className={s.ImageGallery}>
             <ImageGalleryItem
               openModal={this.openModal}
               hideLoader={hideLoader}
-              text={text}
+              search={search}
               page={page}
               scroll={this.scroll}
             />
@@ -70,5 +70,5 @@ export default class ImageGallery extends Component {
 }
 ImageGallery.propTypes = {
   hideLoader: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
+  search: PropTypes.string.isRequired,
 };

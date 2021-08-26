@@ -9,7 +9,6 @@ export default function Loaders() {
         height={80}
         width={80}
       />
-      ;
     </div>
   );
 }

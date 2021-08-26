@@ -5,7 +5,7 @@ import ImageGallery from './Components/ImageGallery/ImageGallery';
 import Loaders from './Components/Loader/Loader';
 export default class App extends Component {
   state = {
-    text: '',
+    search: '',
     loaderAreShown: false,
   };
 
@@ -14,12 +14,15 @@ export default class App extends Component {
     this.setState(prevState => ({
       loaderAreShown: true,
     }));
+
     evt.preventDefault();
+
     if (inputValue.trim() === '') {
       alert('Введите ключевое слово для поиска картинок');
       return;
     }
-    this.setState({ text: inputValue });
+
+    this.setState({ search: inputValue });
     evt.target[0].value = '';
   };
   showLoader = () => {
@@ -33,8 +36,8 @@ export default class App extends Component {
     }));
   };
   render() {
-    const { text, loaderAreShown } = this.state;
-    const textCheck = this.state.text === '';
+    const { search, loaderAreShown } = this.state;
+    const searchCheck = this.state.search === '';
     return (
       <>
         <div>
@@ -42,9 +45,9 @@ export default class App extends Component {
             onSubmit={this.handleSubmit}
           ></Searchbar>
           {loaderAreShown && <Loaders />}
-          {!textCheck && (
+          {!searchCheck && (
             <ImageGallery
-              text={text}
+              search={search}
               hideLoader={this.hideLoader}
             />
           )}

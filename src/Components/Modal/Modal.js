@@ -27,10 +27,15 @@ export default class Modal extends Component {
   }
   render() {
     return createPortal(
-      <div ref={this.ref}>
+      <div ref={this.ref} className={s.Overlay}>
         <img src={this.props.url} alt="" />
       </div>,
       modalPortal,
     );
   }
 }
+
+Modal.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
+};
