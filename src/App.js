@@ -43,7 +43,7 @@ export default class App extends Component {
         <div>
           <Searchbar
             onSubmit={this.handleSubmit}
-          ></Searchbar>
+          />
           {loaderAreShown && <Loaders />}
           {!searchCheck && (
             <ImageGallery
