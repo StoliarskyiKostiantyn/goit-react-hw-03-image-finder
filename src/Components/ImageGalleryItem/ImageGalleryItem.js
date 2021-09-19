@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import s from './ImageGalleryItem';
+import api from '../../services/imgAPI';
 export default class ImageGalleryItem extends Component {
   state = { response: [], error: null };
   componentDidMount() {
@@ -30,12 +31,8 @@ export default class ImageGalleryItem extends Component {
     const API_KEY = '21885958-186cb9f8de90f78c5ca194f62';
     const { search, page } = this.props;
     const errorMessage = `Изображений по ключевому слову ${search} не найдено`;
-    return fetch(
-      `https://pixabay.com/api/?q=${search}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`,
-    )
-      .then(response => {
-        return response.json();
-      })
+    return api
+      .fetchImg(search, page)
       .then(data => {
         if (data.hits.length === 0) {
           return Promise.reject(new Error(errorMessage));
